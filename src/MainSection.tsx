@@ -1,5 +1,14 @@
 import React from 'react'
 
+type MessageType = {
+  receiver_username: string
+  sender_username: string
+  text: string
+  __v: number
+  _id: number
+  creation_date: Date
+}
+
 export default function MainSection() {
   const [userToChatWith, setUserToChatWith] = React.useState<null | string>(
     null
@@ -7,20 +16,23 @@ export default function MainSection() {
 
   const [newMessageText, setNewMessageText] = React.useState('')
 
+  const [messageList, setMessagesList] = React.useState([])
+
   React.useEffect(() => {
     let params = new URLSearchParams(document.location.search)
     const userSearchParam: string | null = params.get('user')
     if (userSearchParam) {
       setUserToChatWith(userSearchParam)
+      fetchChat()
     }
-  }, [])
+  }, [userToChatWith])
 
   const submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     fetch('http://localhost:5000/messages/create', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         sender: 'REPLACE',
@@ -37,16 +49,48 @@ export default function MainSection() {
       .catch((error) => console.error(error))
   }
 
+  const fetchChat = () => {
+    fetch(`http://localhost:5000/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        req_user: 'REPLACE',
+        rec_user: userToChatWith,
+      }),
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        setMessagesList(data.messages)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
   return (
-    <div className="bg-green-200 min-h-[calc(100vh-70px)]">
+    <div className="bg-green-200 h-[calc(100vh-70px)]">
       {userToChatWith ? (
-        <div className="h-full">
+        <div className="h-full flex flex-col">
           <div className="bg-green-100 h-[70px] border-b-2 border-black flex items-center pl-6 text-xl">
             <p>{userToChatWith}</p>
           </div>
-          <div className="absolute bottom-0">
-            <form className="m-3 flex" onSubmit={e => submitMessage(e)}>
-              <input onChange={e => setNewMessageText(e.target.value)} value={newMessageText}
+          <div className="bg-green-300 flex-1 p-5">
+            {messageList.map((message: MessageType) => {
+              return (
+                <div key={message._id}>
+                  {message.sender_username}: {message.text}
+                </div>
+              )
+            })}
+          </div>
+          <div className="">
+            <form className="m-3 flex" onSubmit={(e) => submitMessage(e)}>
+              <input
+                onChange={(e) => setNewMessageText(e.target.value)}
+                value={newMessageText}
                 type="text"
                 className="border-[1px] border-black rounded-lg focus:border-2 p-2 font-lg"
               />
