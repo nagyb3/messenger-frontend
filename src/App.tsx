@@ -1,9 +1,16 @@
 import React from 'react'
-import './App.css'
+import Navbar from './Navbar'
 
 function App() {
+  
+  React.useEffect(() => {
+
+  }, [])
+
   return (
-    <div></div>
+    <div className='min-h-screen'>
+      <Navbar />
+    </div>
   )
 }
 
