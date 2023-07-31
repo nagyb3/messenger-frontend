@@ -30,7 +30,17 @@ export default function Sidebar() {
         <div>
           <ul className="ml-8 list-disc">
             {users.map((user: UserType) => {
-              return <li className='my-2' key={user._id}><a href={'/' + user._id}>{user.username}</a></li>
+              return (
+                <li
+                  className="my-2"
+                  key={user._id}
+                  onClick={() =>
+                    (window.location.href = `/?user=${user.username}`)
+                  }
+                >
+                  {user.username}
+                </li>
+              )
             })}
           </ul>
         </div>
