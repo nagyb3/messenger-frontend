@@ -5,6 +5,7 @@ import MainSection from './MainSection'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Profile from './Profile'
 import Login from './Login'
+import Signup from './Signup'
 
 function App() {
   const [hasToken, setHasToken] = React.useState(false)
@@ -31,6 +32,7 @@ function App() {
           ></Route>
           <Route path="/profile" element={<Profile hasToken={hasToken} />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </div>
