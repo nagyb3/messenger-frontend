@@ -33,7 +33,7 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
 
   const submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    fetch('http://localhost:5000/messages/create', {
+    fetch(`${import.meta.env.VITE_API_URL}/messages/create`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -55,7 +55,7 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
   }
 
   const fetchChat = () => {
-    fetch(`http://localhost:5000/chat`, {
+    fetch(`${import.meta.env.VITE_API_URL}/chat`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

@@ -15,7 +15,7 @@ export default function Sidebar({ hasToken }: SidebarPropsType) {
   const [users, setUsers] = React.useState([])
 
   React.useEffect(() => {
-    fetch('http://localhost:5000/users')
+    fetch(`${import.meta.env.VITE_API_URL}/users`)
       .then((response) => {
         return response.json()
       })

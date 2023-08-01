@@ -6,7 +6,7 @@ export default function Signup() {
 
   const fetchSignup = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    fetch(`http://localhost:5000/signup`, {
+    fetch(`${import.meta.env.VITE_API_URL}/signup`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

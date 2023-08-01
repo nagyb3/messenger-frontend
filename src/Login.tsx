@@ -6,7 +6,7 @@ export default function Login() {
 
   const fetchLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/login`, {
+    fetch(`${import.meta.env.VITE_API_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
