@@ -34,17 +34,33 @@ export default function Sidebar({ hasToken }: SidebarPropsType) {
         <div>
           <ul className="ml-8 list-disc">
             {users.map((user: UserType) => {
-              return (
-                <li
-                  className="my-2 cursor-pointer"
-                  key={user._id}
-                  onClick={() =>
-                    (window.location.href = `/?user=${user.username}`)
-                  }
-                >
-                  {user.username}
-                </li>
-              )
+              if (hasToken) {
+                if (user.username !== localStorage.getItem('username')) {
+                  return (
+                    <li
+                      className="my-2 cursor-pointer"
+                      key={user._id}
+                      onClick={() =>
+                        (window.location.href = `/?user=${user.username}`)
+                      }
+                    >
+                      {user.username}
+                    </li>
+                  )
+                }
+              } else {
+                return (
+                  <li
+                    className="my-2 cursor-pointer"
+                    key={user._id}
+                    onClick={() =>
+                      (window.location.href = `/?user=${user.username}`)
+                    }
+                  >
+                    {user.username}
+                  </li>
+                )
+              }
             })}
           </ul>
         </div>

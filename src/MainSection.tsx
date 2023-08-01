@@ -29,7 +29,7 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
       setUserToChatWith(userSearchParam)
       fetchChat()
     }
-  }, [userToChatWith])
+  }, [userToChatWith, messageList])
 
   const submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -39,7 +39,7 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        sender: 'REPLACE',
+        sender: localStorage.getItem('username'),
         receiver: userToChatWith,
         text: newMessageText,
       }),
@@ -47,6 +47,7 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
       .then((response) => {
         if (response.ok) {
           setNewMessageText('')
+          fetchChat()
         }
       })
       .then((data) => {})
@@ -60,7 +61,7 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        req_user: 'REPLACE',
+        req_user: localStorage.getItem('username'),
         rec_user: userToChatWith,
       }),
     })
@@ -81,11 +82,18 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
           <div className="bg-green-100 h-[70px] border-b-2 border-black flex items-center pl-6 text-xl">
             <p>{userToChatWith}</p>
           </div>
-          <div className="bg-green-300 flex-1 p-5">
+          <div className="bg-green-300 flex-1 p-5 flex flex-col gap-3">
             {messageList.map((message: MessageType) => {
               return (
-                <div key={message._id}>
-                  {message.sender_username}: {message.text}
+                <div
+                  key={message._id}
+                  className={
+                    message.sender_username === localStorage.getItem('username')
+                      ? 'bg-blue-700 text-white rounded p-2 w-fit self-end'
+                      : 'bg-gray-400 text-black rounded p-2 w-fit'
+                  }
+                >
+                  {message.text}
                 </div>
               )
             })}

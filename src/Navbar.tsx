@@ -12,6 +12,7 @@ export default function Navbar({ hasToken, setHasToken }: NavbarPropsType) {
     localStorage.removeItem('username')
     localStorage.removeItem('token')
     setHasToken(false)
+    window.location.href = "/"
   }
 
   return (
