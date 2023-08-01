@@ -13,11 +13,11 @@ function App() {
     if (localStorage.getItem('token') !== null) {
       setHasToken(true)
     }
-  }, [])
+  }, [hasToken])
 
   return (
     <div className="min-h-screen">
-      <Navbar hasToken={hasToken} />
+      <Navbar hasToken={hasToken} setHasToken={setHasToken} />
       <BrowserRouter basename="/">
         <Routes>
           <Route
@@ -29,7 +29,7 @@ function App() {
               </div>
             }
           ></Route>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile hasToken={hasToken} />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>

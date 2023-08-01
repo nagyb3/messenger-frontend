@@ -13,7 +13,7 @@ type MainSectionPropsType = {
   hasToken: boolean
 }
 
-export default function MainSection({hasToken}: MainSectionPropsType) {
+export default function MainSection({ hasToken }: MainSectionPropsType) {
   const [userToChatWith, setUserToChatWith] = React.useState<null | string>(
     null
   )

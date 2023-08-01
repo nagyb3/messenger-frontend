@@ -2,13 +2,16 @@ import React from 'react'
 
 type NavbarPropsType = {
   hasToken: boolean
+  setHasToken: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Navbar({ hasToken }: NavbarPropsType) {
+export default function Navbar({ hasToken, setHasToken }: NavbarPropsType) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
   function handleSignout() {
-    //
+    localStorage.removeItem('username')
+    localStorage.removeItem('token')
+    setHasToken(false)
   }
 
   return (

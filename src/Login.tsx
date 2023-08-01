@@ -22,8 +22,7 @@ export default function Login() {
       .then((data) => {
         console.log(data);
         localStorage.setItem('token', data.token);
-        // setPasswordInput("");
-        // setUsernameInput("");
+        localStorage.setItem('username', usernameInput);
         window.location.href = "/";
       })
       .catch((error) => {

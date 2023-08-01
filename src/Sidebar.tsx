@@ -36,7 +36,7 @@ export default function Sidebar({ hasToken }: SidebarPropsType) {
             {users.map((user: UserType) => {
               return (
                 <li
-                  className="my-2"
+                  className="my-2 cursor-pointer"
                   key={user._id}
                   onClick={() =>
                     (window.location.href = `/?user=${user.username}`)
