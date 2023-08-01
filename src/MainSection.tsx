@@ -9,7 +9,11 @@ type MessageType = {
   creation_date: Date
 }
 
-export default function MainSection() {
+type MainSectionPropsType = {
+  hasToken: boolean
+}
+
+export default function MainSection({hasToken}: MainSectionPropsType) {
   const [userToChatWith, setUserToChatWith] = React.useState<null | string>(
     null
   )

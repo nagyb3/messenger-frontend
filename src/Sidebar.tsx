@@ -7,7 +7,11 @@ type UserType = {
   password: string
 }
 
-export default function Sidebar() {
+type SidebarPropsType = {
+  hasToken: boolean
+}
+
+export default function Sidebar({ hasToken }: SidebarPropsType) {
   const [users, setUsers] = React.useState([])
 
   React.useEffect(() => {
