@@ -3,6 +3,7 @@ import React from 'react'
 export default function Signup() {
   const [usernameInput, setUsernameInput] = React.useState('')
   const [passwordInput, setPasswordInput] = React.useState('')
+  const [emailInput, setEmailInput] = React.useState('')
 
   const fetchSignup = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -14,6 +15,7 @@ export default function Signup() {
       body: JSON.stringify({
         username: usernameInput,
         password: passwordInput,
+        email: emailInput
       }),
     })
       .then((response) => {
@@ -28,7 +30,7 @@ export default function Signup() {
   }
 
   return (
-    <div className="bg-green-200 h-[calc(100vh-70px)]">
+    <div className="bg-orange-100 h-[calc(100vh-70px)]">
       <h1 className="text-center text-3xl p-8">Signup</h1>
       <form
         action=""
@@ -45,6 +47,18 @@ export default function Signup() {
             id="username"
             onChange={(e) => setUsernameInput(e.target.value)}
             value={usernameInput}
+          />
+        </div>
+        <div className="w-fit">
+          <label htmlFor="email" className="text-lg">
+            Email:
+          </label>
+          <input
+            className="mx-3 p-1 border-[1px] border-black rounded"
+            type="email"
+            id="email"
+            onChange={(e) => setEmailInput(e.target.value)}
+            value={emailInput}
           />
         </div>
         <div className="w-fit">

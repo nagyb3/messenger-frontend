@@ -14,7 +14,7 @@ export default function Profile({ hasToken }: ProfilePropsType) {
   }, [hasToken])
 
   return (
-    <div className="bg-green-100 min-h-[calc(100vh-70px)]">
+    <div className="bg-orange-100 min-h-[calc(100vh-70px)]">
       {hasToken ? (
         <div>
           <h1 className="text-center text-3xl p-8 font-semibold">Your Profile</h1>

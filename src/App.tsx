@@ -11,6 +11,7 @@ function App() {
   const [hasToken, setHasToken] = React.useState(false)
 
   React.useEffect(() => {
+    document.title = 'Messenger'
     if (localStorage.getItem('token') !== null) {
       setHasToken(true)
     }
@@ -24,7 +25,7 @@ function App() {
           <Route
             path="/"
             element={
-              <div className="grid grid-cols-[1fr_2fr] min-h-[calc(100vh-70px)]">
+              <div className="grid grid-cols-[300px_2fr] min-h-[calc(100vh-70px)]">
                 <Sidebar hasToken={hasToken} />
                 <MainSection hasToken={hasToken} />
               </div>

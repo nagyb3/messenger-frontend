@@ -31,7 +31,7 @@ export default function Login() {
   }
 
   return (
-    <div className="bg-green-200 h-[calc(100vh-70px)]">
+    <div className="bg-orange-100 h-[calc(100vh-70px)]">
       <h1 className="text-center text-3xl p-8">Login</h1>
       <form action="" onSubmit={e => fetchLogin(e)} className='flex flex-col items-center gap-10'>
         <div className='w-fit'>

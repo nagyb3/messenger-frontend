@@ -76,21 +76,21 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
       })
   }
   return (
-    <div className="bg-green-200 h-[calc(100vh-70px)]">
-      {userToChatWith ? (
+    <div className="bg-orange-100 h-[calc(100vh-70px)]">
+      { userToChatWith ? (
         <div className="h-full flex flex-col">
-          <div className="bg-green-100 h-[70px] border-b-2 border-black flex items-center pl-6 text-xl">
+          <div className="bg-orange-300 h-[70px] border-b-2 border-black flex items-center pl-6 text-xl">
             <p>{userToChatWith}</p>
           </div>
-          <div className="bg-green-300 flex-1 p-5 flex flex-col gap-3">
+          <div className="bg-orange-100 flex-1 p-5 flex flex-col gap-3">
             {messageList.map((message: MessageType) => {
               return (
                 <div
                   key={message._id}
                   className={
                     message.sender_username === localStorage.getItem('username')
-                      ? 'bg-blue-700 text-white rounded p-2 w-fit self-end'
-                      : 'bg-gray-400 text-black rounded p-2 w-fit'
+                      ? 'bg-blue-700 text-white rounded p-2 w-fit self-end shadow-[3px_3px_6px_rgba(0,0,0,0.5)]'
+                      : 'bg-gray-300 text-black rounded p-2 w-fit border-[1px] border-gray-500 shadow-[3px_3px_6px_rgba(0,0,0,0.3)]'
                   }
                 >
                   {message.text}
