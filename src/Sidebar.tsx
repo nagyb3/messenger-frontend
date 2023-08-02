@@ -40,9 +40,11 @@ export default function Sidebar({ hasToken }: SidebarPropsType) {
                     <li
                       className="my-2 cursor-pointer"
                       key={user._id}
-                      onClick={() =>
-                        (window.location.href = `/?user=${user.username}`)
-                      }
+                      onClick={() => {
+                        if (hasToken) {
+                          window.location.href = `/?user=${user.username}`
+                        }
+                      }}
                     >
                       {user.username}
                     </li>
@@ -53,9 +55,11 @@ export default function Sidebar({ hasToken }: SidebarPropsType) {
                   <li
                     className="my-2 cursor-pointer"
                     key={user._id}
-                    onClick={() =>
-                      (window.location.href = `/?user=${user.username}`)
-                    }
+                    onClick={() => {
+                      if (hasToken) {
+                        window.location.href = `/?user=${user.username}`
+                      }
+                    }}
                   >
                     {user.username}
                   </li>
