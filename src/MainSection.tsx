@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useDebugValue } from 'react'
 
 type MessageType = {
   receiver_username: string
@@ -77,7 +77,7 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
   }
   return (
     <div className="bg-orange-100 h-[calc(100vh-70px)]">
-      { userToChatWith ? (
+      {userToChatWith ? (
         <div className="h-full flex flex-col">
           <div className="bg-orange-300 h-[70px] border-b-2 border-black flex items-center pl-6 text-xl">
             <p>{userToChatWith}</p>
@@ -116,9 +116,15 @@ export default function MainSection({ hasToken }: MainSectionPropsType) {
         </div>
       ) : (
         <div className="flex items-center justify-center min-h-full p-6">
-          <h1 className="text-xl text-center">
-            Click on a user from the left panel to chat with!
-          </h1>
+          {hasToken ? (
+            <h1 className="text-xl text-center">
+              Click on a user from the left panel to chat with!
+            </h1>
+          ) : (
+            <h1 className="text-xl text-center">
+              Login first to chat with users!
+            </h1>
+          )}
         </div>
       )}
     </div>
